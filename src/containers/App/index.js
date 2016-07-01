@@ -16,7 +16,7 @@ class App extends Component {
         3
         </div>
         <div className={styles.column}>
-        7
+        4
         </div>
       </section>
     );
