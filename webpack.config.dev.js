@@ -11,9 +11,10 @@ module.exports = {
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/'
     },
-    entry: [
-      './src/app.js'
-    ],
+    entry: {
+      app: ['webpack-dev-server/client?http://localhost:8080',
+          './src/app.js']
+    },
     module: {
       preLoaders: [
        {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/}
@@ -22,7 +23,7 @@ module.exports = {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loaders: ['babel']
+          loaders: ['react-hot', 'babel']
         },
         {
   				test: /\.json$/,

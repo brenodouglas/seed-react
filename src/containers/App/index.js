@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styles from './style.css';
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
-      <h1 className={styles.h1}>Hello word</h1>
+      <section>
+        <h1 className={styles.h1}>Hello Word!</h1>
+      </section>
     );
   }
 }
+
+export default connect((state) => state)(App);
