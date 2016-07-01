@@ -45,7 +45,7 @@ module.exports = {
         template: 'index.ejs'
       }),
       new webpack.HotModuleReplacementPlugin(),
-      new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true 
+      new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true})
     ],
     postcss: [
       require('postcss-clearfix'),
