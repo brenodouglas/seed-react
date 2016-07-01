@@ -15,6 +15,9 @@ module.exports = {
       './src/app.js'
     ],
     module: {
+      preLoaders: [
+       {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/}
+      ],
       loaders: [
         {
           test: /\.js$/,
@@ -36,6 +39,9 @@ module.exports = {
           loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&sourceMap!postcss-loader')
         }
       ]
+    },
+    eslint: {
+      quiet: true
     },
     resolve: {
   		modulesDirectories: [ 'src', 'node_modules' ],
