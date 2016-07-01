@@ -1,7 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -26,18 +24,23 @@ module.exports = {
           loaders: ['react-hot', 'babel']
         },
         {
+          test: /\.css$/,
+          exclude: /node_modules/,
+          loaders: ['react-hot']
+        },
+        {
   				test: /\.json$/,
   				loader: 'json-loader'
   			},
         {
           test: /\.css$/,
           include: /node_modules/,
-          loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&sourceMap!postcss-loader')
+          loader: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader'
         },
         {
           test: /\.css$/,
           exclude: /node_modules/,
-          loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&sourceMap!postcss-loader')
+          loader: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader'
         }
       ]
     },
@@ -53,8 +56,7 @@ module.exports = {
       new HtmlWebpackPlugin({
         template: 'index.ejs'
       }),
-      new webpack.HotModuleReplacementPlugin(),
-      new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true})
+      new webpack.HotModuleReplacementPlugin()
     ],
     postcss: [
       require('postcss-clearfix'),
