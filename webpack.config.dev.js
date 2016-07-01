@@ -51,15 +51,22 @@ module.exports = {
       new HtmlWebpackPlugin({
         template: 'index.ejs'
       }),
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({
+        'process.env': {
+          DEBUG: JSON.stringify('*'),
+          NODE_ENV: JSON.stringify('development')
+        }
+      })
     ],
     postcss: [
       require('postcss-clearfix'),
       require('postcss-nested'),
+      require('postcss-pure-grid'),
       require('postcss-cssnext')({
          features: {
            rem: { rootValue: 10 }
          }
-       })
+      })
     ]
 };

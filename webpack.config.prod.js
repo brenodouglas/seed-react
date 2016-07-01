@@ -48,6 +48,11 @@ module.exports = {
       }),
       new webpack.HotModuleReplacementPlugin(),
       new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true }),
+      new webpack.DefinePlugin({
+        'process.env': 
+          NODE_ENV: JSON.stringify('production')
+        }
+      })
       // optimizations
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.OccurenceOrderPlugin(),

@@ -5,8 +5,19 @@ import styles from './style.css';
 class App extends Component {
   render() {
     return (
-      <section>
-        <h1 className={styles.h1}>Hello Word!</h1>
+      <section className={styles.row}>
+        <div className={styles.column}>
+        9
+        </div>
+        <div className={styles.column}>
+        2
+        </div>
+        <div className={styles.column}>
+        3
+        </div>
+        <div className={styles.column}>
+        7
+        </div>
       </section>
     );
   }

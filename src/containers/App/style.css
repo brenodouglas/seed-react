@@ -1,4 +1,10 @@
+.row {
+  border: 1px solid #f0f;
+  pure-grid-group: row nowrap;
+}
 
-.h1 {
-  color: #F0F;
+.column {
+  color: #CCC;
+  pure-grid-unit: 1/4;
+  border: 1px solid #000;
 }
