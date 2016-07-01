@@ -43,7 +43,10 @@ module.exports = {
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true }),
-      new HtmlWebpackPlugin()
+      new HtmlWebpackPlugin({
+        fiename: 'index.html',
+        tempate: 'index.html'
+      })
     ],
     postcss: [
       require('postcss-clearfix'),

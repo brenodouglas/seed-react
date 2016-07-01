@@ -41,9 +41,11 @@ module.exports = {
   		extensions: ['', '.json', '.js', '.jsx', '.css']
   	},
     plugins: [
+      new HtmlWebpackPlugin({
+        template: 'index.ejs'
+      }),
       new webpack.HotModuleReplacementPlugin(),
       new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true }),
-      new HtmlWebpackPlugin(),
       // optimizations
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.OccurenceOrderPlugin(),
