@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     output: {
@@ -41,6 +42,7 @@ module.exports = {
   		extensions: ['', '.json', '.js', '.jsx', '.css']
   	},
     plugins: [
+      new CleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
       new HtmlWebpackPlugin({
         template: 'index.ejs'
       }),
