@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --hot --inline --content-base dist/",
-    "build": "webpack --config webpack.prod.config.js"
+    "dev": "webpack-dev-server --hot --inline --content-base dist/ --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js"
   },
   "author": "Breno Douglas <bdouglasans@gmail.com>",
   "license": "MIT",
