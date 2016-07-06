@@ -9,19 +9,19 @@ class App extends Component {
     dispatch: React.PropTypes.func
   }
 
-  render() {
-    const { dispatch } = this.props;
-
-    dispatch({
+  static fetch(dispatch) {
+    return dispatch({
       types: [
         CALL_API_REQUEST,
         CALL_API_SUCCESS,
         CALL_API_FAILURE
       ],
-      uri: '/users/brenodouglas',
+      uri: 'users/brenodouglas',
       baseUri: 'https://api.github.com'
     });
+  }
 
+  render() {
     return (
       <section className={styles.row}>
         <div className={styles.column}>

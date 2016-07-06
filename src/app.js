@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import { Router, RouterContext, browserHistory } from 'react-router';
+import { Router, browserHistory } from 'react-router';
+import RouterFetch from './components/routerFetch';
 
 import routes from './routes';
 
@@ -11,7 +12,7 @@ ReactDOM.render(
     <Router
       history={browserHistory}
       routes={routes}
-      render={props => <RouterContext {...props} />}
+      render={props => <RouterFetch {...props} />}
     />
   </Provider>,
   document.getElementById('app')

@@ -1,4 +1,5 @@
-import Api from 'fetch-api';
+import 'isomorphic-fetch';
+
 
 export default (store) => {
   const { dispatch } = store;
@@ -15,30 +16,32 @@ export default (store) => {
       return next(action);
     }
 
-    const api = new Api({
-      baseURI: baseUri
-    });
-
     const [requestType, successType, failureType] = types;
 
     dispatch({ ...payload, type: requestType });
 
-    return api.get(uri, (err, res, parsedResponse) => {
-      if (err) {
-        dispatch({
-          ...payload,
-          type: failureType,
-          body: err
-        });
-      } else {
-        dispatch({
-          ...payload,
-          type: successType,
-          body: parsedResponse,
-          res,
-          lastFetched: Date.now()
-        });
+    return fetch(`${baseUri}/${uri}`, payload).then(response => {
+      if (response.status >= 400) {
+        throw new Error('Bad response from server');
       }
+
+      return response.json();
+    })
+    .then(result => {
+      dispatch({
+        ...payload,
+        type: successType,
+        body: result,
+        result,
+        lastFetched: Date.now()
+      });
+    })
+    .catch(err => {
+      dispatch({
+        ...payload,
+        type: failureType,
+        body: err
+      });
     });
   };
 };
