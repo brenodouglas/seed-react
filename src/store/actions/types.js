@@ -2,6 +2,8 @@ export const DISPLAY_ALERT = 'DISPLAY_ALERT';
 export const RETRY_ALERT = 'RETRY_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
 
+export const API_CALL = 'API_CALL';
+
 export const CALL_API_REQUEST = 'CALL_API_REQUEST';
 export const CALL_API_SUCCESS = 'CALL_API_SUCCESS';
 export const CALL_API_FAILURE = 'CALL_API_FAILURE';

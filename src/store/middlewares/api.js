@@ -1,26 +1,22 @@
 import 'isomorphic-fetch';
-
+import { CALL_API_REQUEST, CALL_API_SUCCESS, CALL_API_FAILURE, API_CALL } from './../actions/types';
 
 export default (store) => {
   const { dispatch } = store;
 
   return next => action => {
     const {
-      types,
-      uri,
-      baseUri,
+      type,
       payload = {}
     } = action;
 
-    if (! types) {
+    if (type !== API_CALL) {
       return next(action);
     }
 
-    const [requestType, successType, failureType] = types;
+    dispatch({ ...payload, type: CALL_API_REQUEST });
 
-    dispatch({ ...payload, type: requestType });
-
-    return fetch(`${baseUri}/${uri}`, payload).then(response => {
+    return fetch(`${payload.baseUri}/${payload.endpoint}`, payload).then(response => {
       if (response.status >= 400) {
         throw new Error('Bad response from server');
       }
@@ -30,17 +26,16 @@ export default (store) => {
     .then(result => {
       dispatch({
         ...payload,
-        type: successType,
-        body: result,
-        result,
+        type: CALL_API_SUCCESS,
+        entity: result,
         lastFetched: Date.now()
       });
     })
     .catch(err => {
       dispatch({
         ...payload,
-        type: failureType,
-        body: err
+        type: CALL_API_FAILURE,
+        err
       });
     });
   };

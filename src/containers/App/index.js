@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './style.css';
-import { CALL_API_REQUEST, CALL_API_SUCCESS, CALL_API_FAILURE } from './../../store/actions/types';
+import { carregarUser } from './../../store/actions';
 
 class App extends Component {
 
@@ -10,18 +10,15 @@ class App extends Component {
   }
 
   static fetch(dispatch) {
-    return dispatch({
-      types: [
-        CALL_API_REQUEST,
-        CALL_API_SUCCESS,
-        CALL_API_FAILURE
-      ],
+    return dispatch(carregarUser({
+      name: 'users',
       uri: 'users/brenodouglas',
       baseUri: 'https://api.github.com'
-    });
+    }));
   }
 
   render() {
+    console.log(this.props);
     return (
       <section className={styles.row}>
         <div className={styles.column}>
