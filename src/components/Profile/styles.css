@@ -1,0 +1,11 @@
+.row {
+  pure-grid-group: row nowrap;
+}
+
+.columnLeft {
+  pure-grid-unit: 1/4;
+}
+
+.columnRight {
+  pure-grid-unit: 3/4;
+}
